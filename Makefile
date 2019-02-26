@@ -6,11 +6,12 @@
 #    By: cmanfred <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/21 15:36:29 by cmanfred          #+#    #+#              #
-#    Updated: 2019/01/05 17:21:20 by cmanfred         ###   ########.fr        #
+#    Updated: 2019/02/15 16:22:28 by cmanfred         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+FLAGS = -Wall -Wextra -Werror
 FILES 		= ft_memset.c \
 				ft_bzero.c \
 				ft_memcpy.c \
@@ -77,20 +78,26 @@ FILES 		= ft_memset.c \
 				ft_memrealloc.c \
 				ft_isnewline.c \
 				ft_copyuntil.c \
-				get_next_line.c
+				get_next_line.c \
+				ft_free2darr.c \
+				ft_lstrev.c \
+				ft_module.c
 
-OFILES = $(FILES:%.c=%.o)
+OFILES = $(addprefix objectives/, $(FILES:%.c=%.o))
 
 all: $(NAME)
 
-$(OBJ): %.o
-
-$(NAME): $(OBJ)
-	gcc -Wall -Wextra -Werror -c $(FILES) -I ./
+$(NAME): $(OFILES)
 	ar -rc $(NAME) $(OFILES)
 
+objectives/%.o: ./%.c | objectives
+	gcc $(FLAGS) -o $@ -c $^
+
+objectives:
+	mkdir objectives/
+
 clean:
-	rm -rf $(OFILES)
+	rm -rf objectives/
 
 fclean: clean
 	rm -rf $(NAME)

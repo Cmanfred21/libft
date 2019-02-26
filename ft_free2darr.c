@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_free2darr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmanfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:34:33 by cmanfred          #+#    #+#             */
-/*   Updated: 2019/02/06 16:21:39 by cmanfred         ###   ########.fr       */
+/*   Created: 2019/02/07 13:24:52 by cmanfred          #+#    #+#             */
+/*   Updated: 2019/02/11 18:04:33 by cmanfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *s1, const char *s2)
+#include "libft.h"
+#include <stdlib.h>
+
+void	ft_free2darr(char **res)
 {
 	int		i;
-	int		j;
 
 	i = 0;
-	while (s1[i] != '\0')
+	while (res[i])
+	{
+		ft_strdel(&(res[i]));
 		i++;
-	j = -1;
-	while (s2[++j] != '\0')
-		s1[i + j] = s2[j];
-	s1[i + j] = '\0';
-	return (s1);
+	}
+	free(res);
 }

@@ -6,7 +6,7 @@
 /*   By: cmanfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 12:28:20 by cmanfred          #+#    #+#             */
-/*   Updated: 2019/01/05 16:35:11 by cmanfred         ###   ########.fr       */
+/*   Updated: 2019/02/20 21:25:13 by cmanfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # define CHECKMALLOC(x) if (!x) return (-1);
 
 # include <string.h>
+
+int					ft_module(int num);
+
+void				ft_free2darr(char **res);
 
 int					get_next_line(const int fd, char **line);
 
@@ -71,6 +75,8 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+void				ft_lstrev(t_list **alst);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 

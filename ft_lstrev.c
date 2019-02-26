@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmanfred <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:34:33 by cmanfred          #+#    #+#             */
-/*   Updated: 2019/02/06 16:21:39 by cmanfred         ###   ########.fr       */
+/*   Created: 2019/02/11 16:02:05 by cmanfred          #+#    #+#             */
+/*   Updated: 2019/02/11 19:28:06 by cmanfred         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *s1, const char *s2)
-{
-	int		i;
-	int		j;
+#include "libft.h"
+#include <stdlib.h>
 
-	i = 0;
-	while (s1[i] != '\0')
-		i++;
-	j = -1;
-	while (s2[++j] != '\0')
-		s1[i + j] = s2[j];
-	s1[i + j] = '\0';
-	return (s1);
+void		ft_lstrev(t_list **alst)
+{
+	t_list	*prev;
+	t_list	*cur;
+	t_list	*next;
+
+	prev = NULL;
+	cur = *alst;
+	while (cur != NULL)
+	{
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
+	}
+	*alst = prev;
 }
